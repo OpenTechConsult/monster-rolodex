@@ -13,7 +13,6 @@ class App extends Component {
       monsters: [],
       searchField: '',
     }
-    console.log('constructor')
   }
 
   componentDidMount() {
@@ -22,11 +21,7 @@ class App extends Component {
       .then(response => response.json())
       .then(users => this.setState(() => {
         return { monsters: users }
-      },
-        () => {
-          console.log(this.state)
-        }
-      ))
+      }))
   }
 
   onSearchChange = (event) => {
@@ -37,7 +32,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('render')
 
     const { monsters, searchField } = this.state
     const { onSearchChange } = this
@@ -55,17 +49,7 @@ class App extends Component {
           onChange={onSearchChange}
         />
 
-        {
-          // filteredMonsters.map((monster) => {
-          //   return (
-          //     <div key={monster.id}>
-          //       <h1>{monster.name}</h1>
-          //     </div>
-          //   )
-          // })
-        }
-
-        <CardList />
+        <CardList monsters={filteredMonsters} />
       </div>
     )
   }
